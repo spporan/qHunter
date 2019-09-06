@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "484758332325",
+    "firebase_url": "https://qhunter-a3a90.firebaseio.com",
+    "project_id": "qhunter-a3a90",
+    "storage_bucket": "qhunter-a3a90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484758332325:android:917e66dca7bbec4796be4c",
+        "android_client_info": {
+          "package_name": "com.tanveer.qhunter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484758332325-t64fv6f3j83f4q5mg6t9po9k3fs9eqil.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tanveer.qhunter",
+            "certificate_hash": "85054eafca0b5617055731cee1654ddb0049d236"
+          }
+        },
+        {
+          "client_id": "484758332325-q3qoprod1896c60ftt6ob8sso8mt5ibp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4WH3VqKWvDd0VdfSykck7C3jIDKhz5OA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484758332325-q3qoprod1896c60ftt6ob8sso8mt5ibp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
