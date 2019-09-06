@@ -15,9 +15,14 @@
 
         <Button
             android:id="@+id/qrBtn"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="100dp"
             android:layout_width="200dp"
             android:text="QR Scanner"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/qrGen"
+            android:layout_width="200dp"
+            android:text="QR Generator"
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/registerBtn"

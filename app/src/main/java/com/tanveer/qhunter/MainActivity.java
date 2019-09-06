@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.qrGen).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, QRGenActivity.class));
+            }
+        });
 
         Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
