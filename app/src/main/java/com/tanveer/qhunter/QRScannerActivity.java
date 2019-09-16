@@ -55,11 +55,10 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
     }
     @Override
     public void handleResult(Result result) {
-//        MainActivity.textView.setText(result.getText());
-//        MainActivity.result = result.getText();
-//        onBackPressed();
-        Intent intent = new Intent(this.getApplicationContext(), ResultActivity.class);
-        intent.putExtra("result", result.getText());
+        Intent intent = new Intent(this.getApplicationContext(), ProfileActivity.class);
+//        String jsonString  ="{'name': 'Tanveer Hoque','organization':'DIU', 'phone': '01685534877', 'email':'thaque20@gmail.com', 'messenger': 'thaque20', 'address': 'Kallyanpur'}";
+//        intent.putExtra("result", jsonString);
+        intent.putExtra("result", result.getText().toString());
         startActivity(intent);
     }
 

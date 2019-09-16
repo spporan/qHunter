@@ -30,42 +30,17 @@
             android:layout_height="wrap_content"
             android:text="Register"
             />
-        <Button
-            android:id="@+id/loginBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            />
+
         <Button
             android:id="@+id/profileBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:text="Profile"
             />
-        <Button
-            android:id="@+id/generateBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Generate"/>
-        <Button
-            android:id="@+id/pdfBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Print PDF" />
-        <Button
-            android:id="@+id/jsonBtn"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Json Testing" />
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Result"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
 
     </LinearLayout>
 
