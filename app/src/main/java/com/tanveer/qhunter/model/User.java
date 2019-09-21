@@ -1,4 +1,4 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.model;
 
 public class User {
     public String name;

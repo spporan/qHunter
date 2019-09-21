@@ -1,8 +1,10 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.activity.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.tanveer.qhunter.R;
 
 public class LoginActivity extends AppCompatActivity {
 

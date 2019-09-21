@@ -1,4 +1,4 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.data;
 
 public class CountryData {
     public static final String[] countryNames = {"Afghanistan", "Albania",

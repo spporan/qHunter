@@ -1,4 +1,4 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +18,8 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class QRScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     ZXingScannerView scannerView;
-    private static final String TAG = "QRScannerActivity";
-    private static final int MY_CAMERA_REQUEST_CODE = 100;
+    public static final String TAG = "QRScannerActivity";
+    public static final int MY_CAMERA_REQUEST_CODE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

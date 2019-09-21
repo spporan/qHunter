@@ -1,19 +1,15 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,18 +20,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
+import com.tanveer.qhunter.R;
+import com.tanveer.qhunter.model.User;
 
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView name;
@@ -113,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity {
                 if(loginState){
                     FirebaseAuth.getInstance().signOut();
 
-                    Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+                    Intent intent = new Intent(ProfileActivity.this, BottomNavBarActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(intent);

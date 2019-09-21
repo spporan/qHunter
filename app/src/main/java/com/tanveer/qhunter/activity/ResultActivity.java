@@ -1,10 +1,12 @@
-package com.tanveer.qhunter;
+package com.tanveer.qhunter.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tanveer.qhunter.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
