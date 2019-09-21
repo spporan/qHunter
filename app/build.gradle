@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
 
 android {
@@ -35,11 +37,19 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
+    implementation 'com.etebarian:meow-bottom-navigation:1.0.1'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation 'me.dm7.barcodescanner:zxing:1.9.13'
-
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'de.hdodenhof:circleimageview:3.0.1'
     implementation 'com.googlecode.libphonenumber:libphonenumber:8.9.7'
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}

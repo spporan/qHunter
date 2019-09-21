@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tanveer.qhunter">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -16,21 +17,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".QRGenActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".OTPActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".QRScannerActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.auth.LoginActivity"></activity>
+        <activity android:name=".activity.QRGenActivity" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.auth.OTPActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ResultActivity" />
+        <activity android:name=".activity.QRScannerActivity" />
+        <activity android:name=".activity.BottomNavBarActivity"
+
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="locked"
+            tools:replace="screenOrientation" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.tanveer.qhunter.fileprovider"
@@ -40,6 +47,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
 </manifest>

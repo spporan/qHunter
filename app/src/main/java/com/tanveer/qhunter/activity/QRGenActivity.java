@@ -45,6 +45,7 @@ import java.util.Objects;
 
 public class QRGenActivity extends AppCompatActivity {
 
+    private static final String TAG = "QRGenActivity";
     EditText name, organization, phone, email, messenger, address;
     Button generate, exit, pick;
     //    ImageView qrImage;
@@ -104,7 +105,11 @@ public class QRGenActivity extends AppCompatActivity {
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("QR Generate", "QR is Generating...");
+                Log.d(TAG, "QR is Generating...");
+                ProgressDialog progressDialog = new ProgressDialog(QRGenActivity.this);
+                progressDialog.setTitle("QR Image");
+                progressDialog.setMessage("Generating");
+                progressDialog.show();
 
                 try {
                     final String scanResult = "{'name':'"+name.getText().toString()+"', 'organization': '"+organization.getText().toString()+"', 'phone': '"+phone.getText().toString()+"', 'email': '"+email.getText().toString()+"', 'address': '"+address.getText().toString()+"', 'messenger': '"+messenger.getText().toString()+"'}";;
@@ -122,6 +127,8 @@ public class QRGenActivity extends AppCompatActivity {
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
+                progressDialog.dismiss();
+                Log.d(TAG, "Generated!");
 
             }
         });
@@ -175,6 +182,57 @@ public class QRGenActivity extends AppCompatActivity {
 
     }
 
+
+
+    protected void onStart(){
+        super.onStart();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        name = (EditText) findViewById(R.id.name);
+        organization = (EditText) findViewById(R.id.organization);
+        phone = (EditText) findViewById(R.id.phone);
+        email = (EditText) findViewById(R.id.email);
+        messenger = (EditText) findViewById(R.id.messenger);
+        address = (EditText) findViewById(R.id.address);
+
+        if(user != null) {
+            try {
+                loginState = true;
+                name.setText(user.getDisplayName());
+                Log.d("Auth Listener", "onAuthStateChanged:signed_in:" + user.getUid());
+
+                findViewById(R.id.btnSave).setVisibility(View.VISIBLE);
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
+                databaseReference.child(uid).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        User user = dataSnapshot.getValue(User.class);
+                        name.setText(user.getName().toString());
+                        organization.setText((user.getOrganization().toString()));
+                        phone.setText(user.getPhone().toString());
+                        email.setText(user.getEmail().toString());
+                        messenger.setText(user.getMessenger().toString());
+                        address.setText(user.getAddress().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(QRGenActivity.this, "Error Occured!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Phone Number Not Found", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            loginState = false;
+            Toast.makeText(getApplicationContext(), "Login First", Toast.LENGTH_SHORT).show();
+            Log.d("Auth Listener", "Not Logged in:" );
+            findViewById(R.id.btnSave).setVisibility(View.GONE);
+        }
+    }
+
     private Bitmap TextToImageEncode(String Value) throws WriterException {
         BitMatrix bitMatrix;
         try {
@@ -208,171 +266,5 @@ public class QRGenActivity extends AppCompatActivity {
         bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
         return bitmap;
     }
-
-    protected void onStart(){
-        super.onStart();
-        uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        name = (EditText) findViewById(R.id.name);
-        organization = (EditText) findViewById(R.id.organization);
-        phone = (EditText) findViewById(R.id.phone);
-        email = (EditText) findViewById(R.id.email);
-        messenger = (EditText) findViewById(R.id.messenger);
-        address = (EditText) findViewById(R.id.address);
-
-        if(user != null) {
-            try {
-                loginState = true;
-                name.setText(user.getDisplayName());
-                Log.d("Auth Listener", "onAuthStateChanged:signed_in:" + user.getUid());
-
-                findViewById(R.id.btnSave).setVisibility(View.VISIBLE);
-
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("user");
-                databaseReference.child(uid).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        Toast.makeText(QRGenActivity.this, dataSnapshot.toString(), Toast.LENGTH_LONG).show();
-                        User user = dataSnapshot.getValue(User.class);
-                        name.setText(user.getName().toString());
-                        organization.setText((user.getOrganization().toString()));
-                        phone.setText(user.getPhone().toString());
-                        email.setText(user.getEmail().toString());
-                        messenger.setText(user.getMessenger().toString());
-                        address.setText(user.getAddress().toString());
-//                        Toast.makeText(QRGenActivity.this, user.getPhone(), Toast.LENGTH_SHORT).show();
-
-//                        Log.d("USER: ", user.toString());
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(QRGenActivity.this, "Error Occured!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Phone Number Not Found", Toast.LENGTH_SHORT).show();
-            }
-        }else {
-            loginState = false;
-            Toast.makeText(getApplicationContext(), "Login First", Toast.LENGTH_SHORT).show();
-            Log.d("Auth Listener", "Not Logged in:" );
-            findViewById(R.id.btnSave).setVisibility(View.GONE);
-        }
-    }
-
-
-//    private void showPictureDialog(){
-//        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-//        pictureDialog.setTitle("Select Action");
-//        String[] pictureDialogItems = {
-//                "Select photo from gallery",
-//                "Capture photo from camera" };
-//        pictureDialog.setItems(pictureDialogItems,
-//                new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        switch (which) {
-//                            case 0:
-//                                choosePhotoFromGallary();
-//                                break;
-//                            case 1:
-//                                takePhotoFromCamera();
-//                                break;
-//                        }
-//                    }
-//                });
-//        pictureDialog.show();
-//    }
-//
-//    public void choosePhotoFromGallary() {
-//        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-//                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//
-//        startActivityForResult(galleryIntent, GALLERY);
-//    }
-//
-//    private void takePhotoFromCamera() {
-//        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-//        startActivityForResult(intent, CAMERA);
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (resultCode == this.RESULT_CANCELED) {
-//            return;
-//        }
-//        if (requestCode == GALLERY) {
-//            if (data != null) {
-//                Uri contentURI = data.getData();
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-////                    String path = saveImage(bitmap);
-////                    Toast.makeText(QrGenActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-////                    qrImage.setImageBitmap(bitmap);
-//
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(QRGenActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//        } else if (requestCode == CAMERA) {
-//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-////            qrImage.setImageBitmap(thumbnail);
-////            saveImage(thumbnail);
-////            Toast.makeText(QrGenActivity.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    public String ImageToString(){
-////        Bitmap bitmap = ((BitmapDrawable) qrImage.getDrawable()).getBitmap();
-////        String res = bitmapToBase64(bitmap);
-////        Log.d("img", res);
-////        return res;
-//        return "";
-//    }
-//
-//    private String bitmapToBase64(Bitmap bitmap) {
-//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayOutputStream);
-//        byte[] byteArray = byteArrayOutputStream .toByteArray();
-//        return Base64.encodeToString(byteArray, Base64.DEFAULT);
-//    }
-//
-//    public String saveImage(Bitmap myBitmap) {
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//        File wallpaperDirectory = new File(
-//                Environment.getExternalStorageDirectory() + IMAGE_DIRECTORY);
-//        // have the object build the directory structure, if needed.
-//
-//        if (!wallpaperDirectory.exists()) {
-//            Log.d("dirrrrrr", "" + wallpaperDirectory.mkdirs());
-//            wallpaperDirectory.mkdirs();
-//        }
-//
-//        try {
-//            File f = new File(wallpaperDirectory, Calendar.getInstance()
-//                    .getTimeInMillis() + ".jpg");
-//            f.createNewFile();   //give read write permission
-//            FileOutputStream fo = new FileOutputStream(f);
-//            fo.write(bytes.toByteArray());
-//            MediaScannerConnection.scanFile(this,
-//                    new String[]{f.getPath()},
-//                    new String[]{"image/jpeg"}, null);
-//            fo.close();
-//            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
-//
-//            return f.getAbsolutePath();
-//        } catch (IOException e1) {
-//            e1.printStackTrace();
-//        }
-//        return "";
-//
-//    }
 
 }
