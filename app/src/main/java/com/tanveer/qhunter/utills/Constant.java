@@ -6,4 +6,5 @@ public   class  Constant {
     public static  final String ADDRESS_KEY="address";
     public static  final String MESSENGER_KEY="messenger";
     public static  final String EMAIL_KEY="email";
+    public static final String GEO_KEY = "geo";
 }
