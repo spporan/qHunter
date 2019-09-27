@@ -90,46 +90,43 @@ public class QRGenerateFragment extends Fragment  {
         addressView=mView.findViewById(R.id.address_view);
         messengerView=mView.findViewById(R.id.messenger_view);
         generateBtn = mView.findViewById(R.id.generateBtn);
-        iv = (ImageView) mView.findViewById(R.id.profie_image_view);
+        iv = mView.findViewById(R.id.profie_image_view);
 
-        generateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "QR is Generating...");
-                ProgressDialog progressDialog = new ProgressDialog(getActivity());
-                progressDialog.setMessage("QR is Generating...");
-                progressDialog.setCancelable(false);
-                progressDialog.show();
+        generateBtn.setOnClickListener(v -> {
+            Log.d(TAG, "QR is Generating...");
+            ProgressDialog progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("QR is Generating...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
-                // start the time consuming task in a new thread
-                Thread thread = new Thread() {
-                    public void run () {
-                        // this is the time consuming task (like, network call, database call)
-                        try{
-                            qrGenerate();
-                        } catch (Exception e){
-                            e.printStackTrace();
-                        }
-                        // Now we are on a different thread than UI thread
-                        // and we would like to update our UI, as this task is completed
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                // Update your UI or do any Post job after the time consuming task
-//                                updateUI();
-                                iv.setImageBitmap(bitmap);
-                                // remember to dismiss the progress dialog on UI thread
-                                progressDialog.dismiss();
-
-                            }
-                        });
-
+            // start the time consuming task in a new thread
+            Thread thread = new Thread() {
+                public void run () {
+                    // this is the time consuming task (like, network call, database call)
+                    try{
+                        qrGenerate();
+                    } catch (Exception e){
+                        e.printStackTrace();
                     }
-                };
+                    // Now we are on a different thread than UI thread
+                    // and we would like to update our UI, as this task is completed
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
 
-                thread.start();
-            }
+                            // Update your UI or do any Post job after the time consuming task
+//                                updateUI();
+                            iv.setImageBitmap(bitmap);
+                            // remember to dismiss the progress dialog on UI thread
+                            progressDialog.dismiss();
+
+                        }
+                    });
+
+                }
+            };
+
+            thread.start();
         });
 
         try {

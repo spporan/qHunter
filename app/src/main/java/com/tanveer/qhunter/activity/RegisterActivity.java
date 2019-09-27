@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        codeView = (TextView) findViewById(R.id.codeView);
 
-        spinner = findViewById(R.id.spinnerCountries);
+
+
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, CountryData.countryNames));
         spinner.setSelection(13);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        editText = findViewById(R.id.editTextPhone);
+
 
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override

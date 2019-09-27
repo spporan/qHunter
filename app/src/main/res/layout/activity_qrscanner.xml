@@ -7,21 +7,14 @@
     android:orientation="vertical"
     >
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:backgroundTint="@color/purple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cardElevation="5dp"
-        android:id="@+id/profile_lay"
-        app:layout_constraintTop_toTopOf="parent">
-
         <RelativeLayout
+            android:id="@+id/profile_lay"
+            android:layout_height="250dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
+            android:background="@drawable/bg_shape"
+            app:layout_constraintTop_toTopOf="parent"
             >
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -47,14 +40,13 @@
                 />
         </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
 
 
     <RelativeLayout
         android:id="@+id/number_edit_pane"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
 
         android:background="?selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,13 +56,20 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_lay">
 
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
 
+            android:background="#504E4E" />
 
         <TextView
             android:id="@+id/number_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:paddingTop="4dp"
+            android:layout_below="@+id/divider"
             android:text="Phone Number"
             android:textSize="23sp" />
 
@@ -124,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Email"
+            android:paddingTop="4dp"
             android:textSize="23sp" />
 
         <TextView
@@ -178,6 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Address"
+            android:paddingTop="4dp"
             android:textSize="23sp" />
 
         <TextView
@@ -231,6 +232,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Messenger"
+            android:paddingTop="4dp"
             android:textSize="23sp" />
 
         <TextView

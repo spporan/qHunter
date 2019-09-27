@@ -34,6 +34,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.tanveer.qhunter.R;
 import com.tanveer.qhunter.fragment.QRGenerateFragment;
 import com.tanveer.qhunter.fragment.QRScannerFragment;
+import com.tanveer.qhunter.fragment.SignUpFragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -115,8 +116,11 @@ public class BottomNavBarActivity extends AppCompatActivity {
                             }
                             break;
                         case 3:
-                            Toast.makeText(getApplicationContext(), "Profile", Toast.LENGTH_LONG).show();
+                            SignUpFragment signUpFragment = new SignUpFragment();
+
+                            fm.beginTransaction().add(R.id.fragment_container, signUpFragment, "3").commitAllowingStateLoss();
                             break;
+
 
                     }
                 }catch (Exception e){

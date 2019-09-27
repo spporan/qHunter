@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="250dp"
+       android:background="@drawable/bg_shape"
+       android:id="@+id/bg_profile"
+       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/text1"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="OTP Verification"
+        android:textColor="#2C2727"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/bg_profile"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="We will send you an One Time Password\n \t\t\t on this mobile number"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text1"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        android:padding="8dp"
+        android:layout_marginBottom="32dp"
+        android:text="Enter mobile number"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text2"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:orientation="horizontal"
+        android:id="@+id/linear1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="46dp"
+        android:gravity="center"
+
+
+        >
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="#111111"
+            android:padding="5dp"
+            android:id="@+id/number"
+            android:textAlignment="center"
+            android:background="@android:color/transparent"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/linear1"
+        android:id="@+id/nextBtn"
+        android:layout_marginTop="16dp"
+        android:text="Continue"
+        android:textColor="#fff"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="25sp"
+        />
+</RelativeLayout>

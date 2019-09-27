@@ -38,13 +38,13 @@ public class OTPActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
 
-        otp = (EditText) findViewById(R.id.editTextCode);
+        otp =  findViewById(R.id.editTextCode);
         mAuth = FirebaseAuth.getInstance();
         no = getIntent().getStringExtra("phonenumber");
 
         sendVerificationCode(no);
 
-        login = (Button) findViewById(R.id.buttonSignIn);
+        login = findViewById(R.id.buttonSignIn);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
